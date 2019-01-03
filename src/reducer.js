@@ -1,4 +1,5 @@
 const initialState = {
+	inStock: false,
 	products: [
 		{
 			category: 'Sporting Goods',
@@ -39,6 +40,8 @@ const initialState = {
 	]
 };
 
+const filterInStock = products => products.filter(product => product.stocked);
+
 const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case 'SEARCH_TYPING':
@@ -48,9 +51,22 @@ const reducer = (state = initialState, action) => {
 					.toLowerCase()
 					.includes(action.payload.toLowerCase());
 			});
+
+			if (state.inStock) products = filterInStock(products);
+
 			return {
 				...state,
 				products
+			};
+		case 'PRODUCTS_IN_STOCK':
+			let _products = state.products || [];
+			if (action.payload) _products = filterInStock(_products);
+			else _products = initialState.products;
+
+			return {
+				...state,
+				products: _products,
+				inStock: action.payload
 			};
 		default:
 			return state;

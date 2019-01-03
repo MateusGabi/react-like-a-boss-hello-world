@@ -3,25 +3,17 @@ import './App.css';
 import React, { Component } from 'react';
 
 import ProductsList from './ProductList';
-import logo from './logo.svg';
-
-const data = [
-  {category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football"},
-  {category: "Sporting Goods", price: "$9.99", stocked: true, name: "Baseball"},
-  {category: "Sporting Goods", price: "$29.99", stocked: false, name: "Basketball"},
-  {category: "Electronics", price: "$99.99", stocked: true, name: "iPod Touch"},
-  {category: "Electronics", price: "$399.99", stocked: false, name: "iPhone 5"},
-  {category: "Electronics", price: "$199.99", stocked: true, name: "Nexus 7"}
-];
+import Search from './Search';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <ProductsList products={data} />
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div className="container">
+				<Search />
+				<ProductsList />
+			</div>
+		);
+	}
 }
 
 export default App;
